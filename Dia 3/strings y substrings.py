@@ -2,7 +2,7 @@
 frase = "Controlar la complejidad es la esencia de la programación"
 print(frase[:9])
 
-Práctica Sub - Strings 2
+#Práctica Sub - Strings 2
 frase = "Nunca confíes en un ordenador que no puedas lanzar por una ventana"
 print(frase[8::3])
 
@@ -39,3 +39,4 @@ print("agua" not in haiku)
 #Práctica Propiedades de Strings 3
 palabra = "electroencefalografista"
 print(len(palabra))
+
