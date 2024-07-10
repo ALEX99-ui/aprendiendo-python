@@ -28,3 +28,4 @@ def invertir_palabra(string):
 
 palabra = invertir_palabra("python")
 print(palabra)
+

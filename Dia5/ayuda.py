@@ -13,7 +13,7 @@ print(x)
 #practica 2 metodos y ayuda, uso de insert() para añadir elementos.
 frutas = ["mango", "banana", "cereza", "ciruela", "pomelo"]
 
-x1 = frutas.in sert(3, 'naranja')  #el 3 es la posicion y naranja es el elemento a añadir
+x1 = frutas in (3, 'naranja')  #el 3 es la posicion y naranja es el elemento a añadir
 
 print(x1)
 
