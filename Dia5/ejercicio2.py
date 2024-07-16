@@ -1,14 +1,14 @@
 def palabra_orden(palabra):
 
-    letras_unicas = set(palabra) # Convertir la cadena a un conjunto para eliminar duplicados
+    mi_set = set()
 
-    letras_ordenadas = sorted(letras_unicas) # Convertir el conjunto a una lista y ordenarla alfabéticamente
+    for letra in palabra:
+        mi_set.add(letra)
 
-    resultado = ''.join(letras_ordenadas)   # Unir los elementos de la lista en una cadena
+    mi_lista = list(mi_set)
+    mi_lista.sort()
 
-    return resultado
+    return mi_lista
 
-palabra = input('ingrese palabra: ')
 
-resultado = palabra_orden(palabra)
-print(resultado)
+print(palabra_orden('entretenido'))
