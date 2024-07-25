@@ -1,13 +1,10 @@
-from random import choice, random
+from random import choice
 
 # inicio juego
 
 def inicio_juego():
-    print("******************************************")
-    print("*                                        *")
+
     print("*          ¡Bienvenido al Ahorcado!      *")
-    print("*                                        *")
-    print("******************************************")
     print("\nInstrucciones:")
     print("1. Adivina la palabra secreta letra por letra.")
     print("2. Tienes un número limitado de intentos.")
@@ -20,58 +17,75 @@ def inicio_juego():
 def palabras_azar():
     lista = ['perro', 'gato', 'caballo', 'burro', 'elefante', 'avestruz', 'tigre', 'aguila', 'buho', 'jirafa','delfin',
             'zorro', 'oso', 'rinoceronte', 'mono', 'gorila', 'camello']
-    palabra = choice(lista)
-    return palabra
+    palabra_original = choice(lista).lower()
+    return palabra_original
 
 # convertir palabra a guiones bajos 
 
-palabra_elegida = palabras_azar()
-n_letras = len(palabra_elegida)
+palabra_original = palabras_azar()
 
-def guiones():
+palabra_oculta = ['_' for _ in palabra_original]
 
-    guion = ''
-    contador = 0
-
-    while contador < n_letras:
-        guion += '_'
-        contador += 1
-    return str(guion)
+letras_adivinadas = []
 
 
-# pedir al usuario que elija una letra 
+def mostrar_palabra_oculta(palabra_oculta):
 
-def validacion(letra_elegida):
+    return ''.join(palabra_oculta)
 
-    comprobar = True
 
-    while comprobar == True:
+
+def desarrollo():
+
+    countervidas = 0
+    vidas = 8
+
+    while '_' in palabra_oculta and countervidas < vidas:
+
         
-        if letra_elegida.isalpha():
-            
-            print('si es valida')
+        
+        print(f'palabra oculta: {mostrar_palabra_oculta(palabra_oculta)}')
 
+        letra = input('Adivina una letra: '.lower())
+
+        if letra in letras_adivinadas:
+            counter = 0
+            counter2 = 0
+            for i in palabra_original:
+                if(i == letra):
+                    counter +=1
+            for i in letras_adivinadas:
+                if(i == letra):
+                    counter2 += 1
+            if(counter2 == counter):
+                print('Ya has adivinado esa letra. Intenta con otra.')
+                continue
+                
+        
+
+        if letra in palabra_original:
+
+            for i, l in enumerate(palabra_original): 
+                                                          # 'i' es un numero que representa la posicion de cada letra en la palabra y 'l' es cada letra en la palabra orignal
+                if l == letra:                            # 'enmerate(palabra_original)' es una funcion que nos da tanto la posicion ('i') como la letra ('l') en cada repeticion del bucle
+                    print('Adivino correctamente')
+                    if(palabra_oculta[i] == letra):
+                        continue
+                    palabra_oculta[i] = letra              #Esto reemplaza el guion en la posición 'i' de la palabra oculta (palabra_oculta) con la letra correcta (letra).
+                    letras_adivinadas.append(letra)
+                    break
+                   
         else:
-            print('No es una letra valida, intentalo de nuevo.')
-
-        print("quiere seguir jugando")
-
-        pregunta = input()
-
-        if(pregunta == 's'):
-            continue
-        else:
-            comprobar = False
-
-    
-
+            print('La letra no esta en la palabra. Intente nuvamente')
+            countervidas += 1
+            print(f'te quedan {vidas - countervidas} vidas')
+        
+    print(f'palabra oculta: {mostrar_palabra_oculta(palabra_oculta)}')
 
 
 
 print(inicio_juego())
-print('Tú palabra secreta es: ', guiones() )
-letra_elegida = str(input('Escoge una letra: '))
-print(validacion(letra_elegida))
+print(desarrollo())
 
 
 
