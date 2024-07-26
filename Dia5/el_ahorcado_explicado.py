@@ -54,7 +54,7 @@ def chuequear_letra(letra_elegida, palabra_oculta, vidas, coincidencias):
         coincidencias += 1
 
     elif letra_elegida in palabra_oculta and letra_elegida in letras_correctas:
-        print('Y has encontrado esa letra. Intenta con otra diferente')
+        print('Ya has encontrado esa letra. Intenta con otra diferente')
     else: 
         letras_incorrectas.append(letra_elegida)
         vidas -= 1 
