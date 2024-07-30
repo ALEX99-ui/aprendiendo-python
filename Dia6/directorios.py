@@ -13,10 +13,10 @@ print(archivo.read())
 
 # mkdir() crear una carpeta nueva
 
-#ruta2 = os.mkdir('C:\\Users\\urrea\\alternativa\\otra')
+ruta2 = os.mkdir('C:\\Users\\urrea\\alternativa\\otra')
 
-#archivo1 = open('alternativo.txt')
-#print(archivo1.read())
+archivo1 = open('alternativo.txt')
+print(archivo1.read())
 
 #
 ruta3 = 'C:\\Users\\urrea\\PycharmProjects\\testProject1\\Dia6\\prueba1.txt'
@@ -26,7 +26,7 @@ print(elemento)
 
 # rmdir() para remover directorios
 
-#os.rmdir('C:\\Users\\urrea\\alternativa\\otra')
+os.rmdir('C:\\Users\\urrea\\alternativa\\otra')
 
 # como abrir un archivo sin usar os 
 
