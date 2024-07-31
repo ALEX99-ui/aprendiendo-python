@@ -1,11 +1,8 @@
-import os 
+from os import system
 
-fuente = 'hola soy fuente'
+nombre = input('dime tu nombre: ')
+edad = input('dime tu edad: ')
 
-print(fuente)
+system('cls')
 
-def clear_console():
-    if os.name == 'nt': 
-        os.system('cls')
-
-clear_console()
+print(f'tu nombre es {nombre} y tienes {edad} años')
