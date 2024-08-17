@@ -1,4 +1,3 @@
-from os import system
 
 class Persona:
 
@@ -11,76 +10,52 @@ class Persona:
 
 class Cliente(Persona):
 
-    def __init__(self, nombre, apellido, numero_cuenta, balance):
+    def __init__(self, nombre, apellido, numero_cuenta, balance = 0):
         super().__init__(nombre, apellido)                          #llamada al constructor de la clase padre
         self.numero_cuenta = numero_cuenta
         self.balance = balance
 
     def __str__(self):
         # Llama al __str__ de la clase padre para obtener su representación y añade la del hijo
-        return f'{super().__str__()}, Numero cuenta: {self.numero_cuenta}, Balance: {self.balance}'
+        return f'Cliente: {self.nombre} {self.apellido}\nBalance de cuenta {self.numero_cuenta}: ${self.balance}'
 
 
-    def depositar(self):
-        deposito = int(input('Ingrese la cifra a depositar: '))
-        self.balance = self.balance + deposito
+    def depositar(self, monto_deposito):
+        self.balance += monto_deposito
+        print('Deposito aceptado.')
 
 
-    def retirar(self):
-        retiro = int(input('Ingrese la cifra a retirar: '))
-
-        if self.balance - retiro < 0:
-            print('No tienes suficientes fondos.')
-
+    def retirar(self, monto_retiro):
+        if self.balance >= monto_retiro:
+            self.balance -= monto_retiro
+            print('Retiro realizado')
         else:
-            self.balance = self.balance - retiro
-            print(f'Tu saldo final es: {self.balance}')
-
-
-
+            print('Fondos insuficientes')
 
 def crear_cliente():
-    nombre = str(input('Ingrese su nombre: '))
-    apellido = str(input('Ingrese su apellido: '))
+    nombre_cl = (input('Ingrese su nombre: '))
+    apellido_cl = (input('Ingrese su apellido: '))
     numero_cuenta = int(input('Ingrese su numero de cuenta: '))
-    balance_inicial = int(input('ingrese el balance incial en su cuenta: '))
-    return nombre, apellido, numero_cuenta, balance_inicial
+    cliente = Cliente(nombre_cl, apellido_cl, numero_cuenta)
+    return cliente
 
 def inicio():
-    system('cls')
-    eleccion = 'x'
-    while not eleccion.isnumeric() or int(eleccion) not in range(1,4):
-        print('Elige una opcion:')
-        print('''
-        [1] - Depositar
-        [2] - Retirar
-        [3] - Salir
-        ''')
-        eleccion = input()
-    return int(eleccion)
+    mi_cliente = crear_cliente()
+    print(mi_cliente)
+    opcion = 0
 
+    while opcion != 'S':
+        print('Elige: Depositar (D), Retirar (R), o Salir (S)')
+        opcion = input()
 
+        if opcion == 'D':
+            monto_dep = int(input('Monto a depositar: '))
+            mi_cliente.depositar(monto_dep)
+        elif opcion == 'R':
+            monto_ret = int(input('Monto a retirar: '))
+            mi_cliente.retirar(monto_ret)
+        print(mi_cliente)
 
+    print('Gracias por operar en Banco python')
 
-parameters = crear_cliente()
-cliente1 = Cliente(parameters[0], parameters[1], parameters[2], parameters[3])
-
-
-
-
-while True:
-
-    menu = inicio()
-    system('cls')
-    if menu == 1:
-        cliente1.depositar()
-        print(f'Su balance final es: {cliente1.balance}')
-
-    elif menu == 2:
-        cliente1.retirar()
-
-    elif menu == 3:
-        break
-
-
-
+inicio()
