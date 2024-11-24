@@ -2,6 +2,15 @@ import pygame
 import random
 import math
 from pygame import mixer
+import io
+
+def fuente_bytes(fuente):
+    # abre el archivo TTF en modo lectura binaria
+    with open(fuente, 'rb') as f:
+        # lee todos los bytes del archivo y los almacena en una variable
+        ttf_bytes = f.read()
+        # crea un objeto BytesIO a partir de los bytes del archivo TTF
+        return io.BytesIO(ttf_bytes)
 
 # Inicializar pygame
 pygame.init()
@@ -56,12 +65,13 @@ bala_visible = False
 
 # puntaje
 puntaje = 0
-fuente = pygame.font.Font('GreatVibes-Regular.ttf', 32)
+fuente_como_bytes = fuente_bytes('GreatVibes-Regular.ttf')
+fuente = pygame.font.Font(fuente_como_bytes, 32)
 texto_x = 10
 texto_y = 10
 
 # texto final de juego
-fuente_final = pygame.font.Font('GreatVibes-Regular.ttf', 80)
+fuente_final = pygame.font.Font(fuente_como_bytes, 80)
 
 def texto_final():
     mi_fuente_final = fuente_final.render('Juego Terminado', True, (255, 255, 255))
