@@ -48,7 +48,7 @@ enemigo_y_cambio = []
 cantidad_enemigos = 8
 
 for e in range(cantidad_enemigos):
-    img_enemigo.append(pygame.image.load('space.png'))
+    img_enemigo.append(pygame.image.load('monster.png'))
     enemigo_x.append(random.randint(0, 736))
     enemigo_y.append(random.randint(50, 200))
     enemigo_x_cambio.append(0.5)
